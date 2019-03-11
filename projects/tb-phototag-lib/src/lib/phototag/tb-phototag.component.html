@@ -1,15 +1,14 @@
 <div class="photo-tag-container">
-  <p><b>Tags classiques</b></p>
+  <p><b>Tags suggérés</b></p>
   <mat-chip-list>
     <mat-chip
       *ngFor= "let tag of basicTags"
-      [color]="getColor(tag)"
+      color="none"
       selected="true"
-      disabled="false"
-      (click)="linkTag(tag)">
+      [disabled]="basicTagAlreadyUsed(tag)"
+      (click)="addBasicTag(tag)">
       {{ tag.name }}
       <mat-spinner class="tagSpinner" diameter="16" *ngIf="tag.pending"></mat-spinner>
-      <mat-icon matChipRemove *ngIf="basicTagAlreadyUsed(tag)" (click)="unlinkTag(tag)">cancel</mat-icon>
     </mat-chip>
   </mat-chip-list>
 
