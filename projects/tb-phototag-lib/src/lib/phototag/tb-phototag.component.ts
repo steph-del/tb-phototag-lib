@@ -24,6 +24,7 @@ export class TbPhototagComponent implements OnInit {
   @Output() log = new EventEmitter<TbLog>();
 
   basicTags: Array<PhotoTag> = [];
+  basicTagsByCategory: Array<Array<PhotoTag>> = [];
   userTags: Array<PhotoTag> = [];
   photoTags: Array<PhotoTag> = [];
   filteredUserTags: Observable<PhotoTag[]>;
@@ -75,6 +76,8 @@ export class TbPhototagComponent implements OnInit {
       this.isLoadingBasicTags = false;
       this.log.emit({module: 'tb-phototag-lib', type: 'error', message_fr: `Les tags par défaut n'ont pas pu être chargés`});
     });
+
+    this.phototagService.getBasicTagsByPath().subscribe(_tags => this.basicTagsByCategory = _tags);
 
     // Get user's tags
     this.isLoadingUsersTags = true;

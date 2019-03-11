@@ -6,4 +6,16 @@
   .tagSpinner {
     margin-left: 10px;
   }
+
+  .basicTagsByCategories {
+    border: 1px solid #F0F0F0;
+    padding: 10px;
+    padding-top: 0;
+    margin-top: 15px;
+    .category {
+      color: grey;
+      font-variant: small-caps;
+      padding-bottom: 10px;
+    }
+  }
 }

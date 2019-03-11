@@ -1,16 +1,19 @@
 <div class="photo-tag-container">
   <p><b>Tags suggérés</b></p>
-  <mat-chip-list>
-    <mat-chip
-      *ngFor= "let tag of basicTags"
-      color="none"
-      selected="true"
-      [disabled]="basicTagAlreadyUsed(tag)"
-      (click)="addBasicTag(tag)">
-      {{ tag.name }}
-      <mat-spinner class="tagSpinner" diameter="16" *ngIf="tag.pending"></mat-spinner>
-    </mat-chip>
-  </mat-chip-list>
+  <div *ngFor="let cat of basicTagsByCategory" class="basicTagsByCategories">
+    <div class="category">{{ cat[0].path }}</div>
+    <mat-chip-list>
+      <mat-chip
+        *ngFor= "let tag of cat"
+        color="none"
+        selected="true"
+        [disabled]="basicTagAlreadyUsed(tag)"
+        (click)="addBasicTag(tag)">
+        {{ tag.name }}
+        <mat-spinner class="tagSpinner" diameter="16" *ngIf="tag.pending"></mat-spinner>
+      </mat-chip>
+    </mat-chip-list>
+  </div>
 
   <p><b>Mes tags</b></p>
   <mat-chip-list>

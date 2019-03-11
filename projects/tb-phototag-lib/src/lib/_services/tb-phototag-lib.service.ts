@@ -48,6 +48,38 @@ export class TbPhototagLibService {
     return of(this.basicTags);
   }
 
+  public getBasicTagsByPath() {
+    const categories: Array<string> = this.getUniqueBasicTagsPaths();
+    const response: any = [];
+    let i = 0;
+    categories.forEach(category => {
+      response[i] = [];
+      for (const bTag of this.basicTags) {
+        if (bTag.path === category) {
+          response[i].push(bTag);
+        }
+      }
+      i++;
+    });
+    return of(response);
+  }
+
+  public getUniqueBasicTagsPaths() {
+    const tagPaths: string[] = [];
+    let i = 0;
+    for (const tag of this.basicTags) {
+      if (i === 0) {
+        tagPaths.push(tag.path);
+      } else {
+        if (tagPaths.indexOf(tag.path) === -1) {
+          tagPaths.push(tag.path);
+        }
+      }
+      i++;
+    }
+    return tagPaths;
+  }
+
   getUserTags(userId: number): Observable<Array<PhotoTag>> {
     // Call API and get user's tags
     return this.http.get(`${this.baseApiUrl}${this.apiPath}.json`).pipe(
