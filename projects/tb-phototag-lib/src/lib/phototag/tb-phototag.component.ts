@@ -20,10 +20,14 @@ export class TbPhototagComponent implements OnInit {
   @Input() userId: number;
   @Input() photoId: number;
   @Input() baseApiUrl = 'http://localhost:8000';
+  @Input() set basicTags(data: Array<PhotoTag>) {
+    this._basicTags = data;
+    this.phototagService.setBasicTags(data);
+  }
 
   @Output() log = new EventEmitter<TbLog>();
 
-  basicTags: Array<PhotoTag> = [];
+  _basicTags: Array<PhotoTag> = [];
   basicTagsByCategory: Array<Array<PhotoTag>> = [];
   userTags: Array<PhotoTag> = [];
   photoTags: Array<PhotoTag> = [];

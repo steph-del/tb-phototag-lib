@@ -1,5 +1,5 @@
 <div class="photo-tag-container">
-  <p><b>Tags suggérés</b></p>
+  <p *ngIf="basicTagsByCategory.length > 0"><b>Tags suggérés</b></p>
   <div *ngFor="let cat of basicTagsByCategory" class="basicTagsByCategories">
     <div class="category">{{ cat[0].path }}</div>
     <mat-chip-list>
